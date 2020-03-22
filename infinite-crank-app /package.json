@@ -1,10 +1,14 @@
 {
-  "name": "easy-notes-app",
+  "name": "infinite-crank-app",
   "version": "1.0.0",
-  "description": "Never miss a thing in life. Take notes quickly. Organize and keep track of all your notes.",
+  "description": "This is the infinite crank blog",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "client-install": "npm install --prefix client",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "keywords": [
     "Express",
@@ -14,7 +18,7 @@
     "Notes"
   ],
   "author": "Julian Wilkison-Duran",
-  "license": "MIT",
+  "license": "",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
