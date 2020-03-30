@@ -4,7 +4,7 @@ const validatorjwt = require("jsonwebtoken");
 const validateRegisterInput = require("../validation/register.js");
 const validateLoginInput = require("../validation/login.js");
 const fs = require('fs');
-const privateKey = fs.readFileSync('/home/bitnami/infinite-crank-app/app/validation/jwtRS256.key');
+const privateKey = fs.readFileSync('/home/bitnami/infinite-crank-app/app/validation/jwtRS256-v2.key');
 exports.register = (req, res) => {
     // Form validation
     const { errors, isValid } = validateRegisterInput(req.body);
@@ -55,19 +55,22 @@ exports.login = (req, res) => {
             if (isMatch) {
                 // User matched
                 // Create JWT Payload
+                var isAdmin = (user.id === "5e758fac8d1d8c15e043387b")?true:false;
+                var audienceType = (isAdmin)?"Admin":"User";
                 const payload = {
                     id: user.id,
-                    name: user.name
+                    name: user.name,
+                    isAdmin:isAdmin
                 };
                 // Sign token
                 validatorjwt.sign(
                     payload,
                     privateKey,
                     {
-                        audience:"infinite-crank",
+                        audience:"infinite-crank:"+audienceType,
                         issuer: 'http://infinitecrank.com',
                         algorithm: 'RS256',
-                        expiresIn: 31556926 // 1 year in seconds
+                        expiresIn: 10800 // 3 hours in seconds
                     },
                     (err, token) => {
                         res.json({
