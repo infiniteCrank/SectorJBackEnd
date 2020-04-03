@@ -1,7 +1,7 @@
 module.exports = (app) => {
     const notes = require('../controllers/note.controller.js');
     const fs = require('fs');
-    const pubKey = fs.readFileSync('/home/bitnami/infinite-crank-app/app/validation/jwtRS256-v2.key.pub');
+    const pubKey = fs.readFileSync('/home/bitnami/infinite-crank-app/app/validation/jwtRS256.key.pub');
     //json web token stuff
     const jwt = require('express-jwt');
     const jwtCheck = jwt({
