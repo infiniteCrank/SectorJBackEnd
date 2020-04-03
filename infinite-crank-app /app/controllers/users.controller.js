@@ -4,7 +4,7 @@ const validatorjwt = require("jsonwebtoken");
 const validateRegisterInput = require("../validation/register.js");
 const validateLoginInput = require("../validation/login.js");
 const fs = require('fs');
-const privateKey = fs.readFileSync('/home/bitnami/infinite-crank-app/app/validation/jwtRS256-v2.key');
+const privateKey = fs.readFileSync('/home/bitnami/infinite-crank-app/app/validation/jwtRS256.key');
 exports.register = (req, res) => {
     // Form validation
     const { errors, isValid } = validateRegisterInput(req.body);
