@@ -1,13 +1,13 @@
 module.exports = (app) => {
     const notes = require('../controllers/note.controller.js');
     const fs = require('fs');
-    const pubKey = fs.readFileSync('/home/bitnami/infinite-crank-app/app/validation/jwtRS256.key.pub');
+    const pubKey = fs.readFileSync('/home/bitnami/sector-j-back-end-app/app/validation/jwtRS256.key.pub');
     //json web token stuff
     const jwt = require('express-jwt');
     const jwtCheck = jwt({
         secret: pubKey,
-        audience: "infinite-crank:Admin",
-        issuer: 'http://infinitecrank.com',
+        audience: "sector-j:Admin",
+        issuer: 'http://sector-j',
         algorithms: ['RS256']
     });
 

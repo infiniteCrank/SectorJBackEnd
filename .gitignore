@@ -102,7 +102,7 @@ dist
 
 # TernJS port file
 .tern-port
-infinite-crank-app /app/validation/jwtRS256-v2.key.pub
-infinite-crank-app /app/validation/jwtRS256-v2.key
-infinite-crank-app /app/validation/jwtRS256.key
-infinite-crank-app /app/validation/jwtRS256.key.pub
+sector-j-back-end-app /app/validation/jwtRS256-v2.key.pub
+sector-j-back-end-app /app/validation/jwtRS256-v2.key
+sector-j-back-end-app /app/validation/jwtRS256.key
+sector-j-back-end-app /app/validation/jwtRS256.key.pub

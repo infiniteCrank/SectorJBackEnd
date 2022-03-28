@@ -1,7 +1,7 @@
 {
-  "name": "infinite-crank-app",
+  "name": "sectorjbackend",
   "version": "1.0.0",
-  "description": "This is the infinite crank blog",
+  "description": "This is the back end of the sector J review website.",
   "main": "server.js",
   "scripts": {
     "client-install": "npm install --prefix client",
@@ -25,7 +25,7 @@
     "concurrently": "^5.1.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "express-jwt": "^5.3.1",
+    "express-jwt": "^6.1.1",
     "helmet": "^3.21.3",
     "is-empty": "^1.2.0",
     "jsonwebtoken": "^8.5.1",

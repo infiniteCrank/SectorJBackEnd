@@ -4,7 +4,7 @@ const validatorjwt = require("jsonwebtoken");
 const validateRegisterInput = require("../validation/register.js");
 const validateLoginInput = require("../validation/login.js");
 const fs = require('fs');
-const privateKey = fs.readFileSync('/home/bitnami/infinite-crank-app/app/validation/jwtRS256.key');
+const privateKey = fs.readFileSync('/home/bitnami/sector-j-back-end-app/app/validation/jwtRS256.key');
 exports.register = (req, res) => {
     // Form validation
     const { errors, isValid } = validateRegisterInput(req.body);
@@ -67,8 +67,8 @@ exports.login = (req, res) => {
                     payload,
                     privateKey,
                     {
-                        audience:"infinite-crank:"+audienceType,
-                        issuer: 'http://infinitecrank.com',
+                        audience:"sector-j:"+audienceType,
+                        issuer: 'http://sectorj.com',
                         algorithm: 'RS256',
                         expiresIn: 10800 // 3 hours in seconds
                     },
