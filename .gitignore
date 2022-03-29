@@ -106,3 +106,4 @@ sector-j-back-end-app /app/validation/jwtRS256-v2.key.pub
 sector-j-back-end-app /app/validation/jwtRS256-v2.key
 sector-j-back-end-app /app/validation/jwtRS256.key
 sector-j-back-end-app /app/validation/jwtRS256.key.pub
+.DS_Store
