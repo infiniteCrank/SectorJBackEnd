@@ -7,6 +7,8 @@ const fs = require('fs');
 const path = require("path");
 const jwtKeyPath = path.resolve("./app/validation/jwtRS256.key");
 const privateKey = fs.readFileSync(jwtKeyPath);
+const adminKeyPath = path.resolve("./app/validation/adminKey.key");
+const adminKey = fs.readFileSync(adminKeyPath);
 exports.register = (req, res) => {
     // Form validation
     const { errors, isValid } = validateRegisterInput(req.body);
@@ -57,7 +59,7 @@ exports.login = (req, res) => {
             if (isMatch) {
                 // User matched
                 // Create JWT Payload
-                var isAdmin = (user.id === "5e758fac8d1d8c15e043387b")?true:false;
+                var isAdmin = (user.id === adminKey)?true:false;
                 var audienceType = (isAdmin)?"Admin":"User";
                 const payload = {
                     id: user.id,
