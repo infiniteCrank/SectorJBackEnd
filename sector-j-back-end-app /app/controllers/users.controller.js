@@ -4,7 +4,9 @@ const validatorjwt = require("jsonwebtoken");
 const validateRegisterInput = require("../validation/register.js");
 const validateLoginInput = require("../validation/login.js");
 const fs = require('fs');
-const privateKey = fs.readFileSync('/home/bitnami/sector-j-back-end-app/app/validation/jwtRS256.key');
+const path = require("path");
+const jwtKeyPath = path.resolve("./app/validation/jwtRS256.key");
+const privateKey = fs.readFileSync(jwtKeyPath);
 exports.register = (req, res) => {
     // Form validation
     const { errors, isValid } = validateRegisterInput(req.body);

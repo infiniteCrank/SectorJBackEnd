@@ -1,7 +1,9 @@
 module.exports = (app) => {
     const notes = require('../controllers/note.controller.js');
     const fs = require('fs');
-    const pubKey = fs.readFileSync('/home/bitnami/sector-j-back-end-app/app/validation/jwtRS256.key.pub');
+    const path = require("path");
+    const jwtKeyPath = path.resolve("./app/validation/jwtRS256.key.pub");
+    const pubKey = fs.readFileSync(jwtKeyPath);
     //json web token stuff
     const jwt = require('express-jwt');
     const jwtCheck = jwt({
