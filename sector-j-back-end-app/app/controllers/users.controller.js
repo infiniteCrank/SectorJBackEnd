@@ -7,8 +7,9 @@ const fs = require('fs');
 const path = require("path");
 const jwtKeyPath = path.resolve("./app/validation/jwtRS256.key");
 const privateKey = fs.readFileSync(jwtKeyPath);
-const adminKeyPath = path.resolve("./app/validation/adminKey.key");
-const adminKey = fs.readFileSync(adminKeyPath);
+const PropertiesReader = require('properties-reader');
+const adminKeyProperties = PropertiesReader('./app/validation/adminKey.properties');
+const adminKey = adminKeyProperties.get("adminKey")
 exports.register = (req, res) => {
     // Form validation
     const { errors, isValid } = validateRegisterInput(req.body);
