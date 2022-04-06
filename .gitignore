@@ -109,3 +109,5 @@ sector-j-back-end-app /app/validation/adminKey.key
 sector-j-back-end-app /app/validation/adminKey.properties
 sector-j-back-end-app /app/validation/jwtRS256.key.pub
 .DS_Store
+sector-j-back-end-app/app/validation/jwtRS256.key
+sector-j-back-end-app/app/validation/jwtRS256.key.pub
