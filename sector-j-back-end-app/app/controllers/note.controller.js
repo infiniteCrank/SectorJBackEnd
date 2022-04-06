@@ -5,7 +5,8 @@ exports.create = (req, res) => {
     // Validate request
     if(!req.body.content) {
         return res.status(400).send({
-            message: "Note content can not be empty"
+            title: 'this is not a required field but your note will be called "Untitled Note"',
+            content:'this is a required field'
         });
     }
 
