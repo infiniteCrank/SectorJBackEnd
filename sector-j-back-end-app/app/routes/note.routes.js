@@ -9,7 +9,7 @@ module.exports = (app) => {
     const jwtCheck = jwt({
         secret: pubKey,
         audience: "sector-j:Admin",
-        issuer: 'http://sector-j',
+        issuer: 'http://sectorj.com',
         algorithms: ['RS256']
     });
 
