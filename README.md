@@ -20,9 +20,7 @@ this is the API for wizduds corp it will have endpoints for product database, in
         }
     ) ```
 7. in the config folder edit database.config.js: 
-   ```module.exports = {
-    url: 'mongodb://someuser:somepassword!@localhost:27017/somedb',
-} ```
+   ```module.exports = {url: 'mongodb://someuser:somepassword!@localhost:27017/somedb',} ```
 
 8. create an adminKey.properties file in validation folder with the following
    ``` adminKey= ```
@@ -31,11 +29,6 @@ this is the API for wizduds corp it will have endpoints for product database, in
    ``` db.products.insert( { name: "some username", email: "someemail@gmail.com", password: "somepassword" } ) ```
 
 10. gather the id created in mongo db for that user
-    ``` {
-  acknowledged: true,
-  insertedIds: { '0': ObjectId("somekey12345") }
-} ```
+    ```{acknowledged: true, insertedIds: { '0': ObjectId("somekey12345") }} ```
 
-11.   place in adminKey.properties
-place in adminKey.properties:
-``` adminKey=somekey12345 ```
+11.  place in adminKey.properties: ``` adminKey=somekey12345 ```
