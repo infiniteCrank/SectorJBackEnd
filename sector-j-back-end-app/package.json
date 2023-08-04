@@ -32,7 +32,7 @@
     "jwks-rsa": "^1.7.0",
     "mongoose": "^5.9.3",
     "morgan": "^1.9.1",
-    "passport": "^0.4.1",
+    "passport": "^0.6.0",
     "passport-jwt": "^4.0.0",
     "path": "^0.12.7",
     "properties-reader": "^2.2.0",
