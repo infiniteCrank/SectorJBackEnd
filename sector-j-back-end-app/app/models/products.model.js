@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const ProductImage = require('../models/product.image.model');
+const ProductType = require('../models/product.type.model');
 
 const ProductsSchema = mongoose.Schema({
     name: {
@@ -9,37 +11,39 @@ const ProductsSchema = mongoose.Schema({
       type: String,
       required: true
     },
-    imageId: {
+    image:  {type: mongoose.Schema.Types.ObjectId, ref: 'ProductImage'},
+    quantity: {
+      type: Number,
+      required: true
+    },
+    size:{
       type: String,
       required: true
     },
-    quanity: {
-        type: string,
-        required: true
-    },
-    size:{
-        type: string,
-        required: true
-    },
     color:{
-        type: string,
-        required: true
+      type: String,
+      required: true
     },
-    typeId:{
-        type: string,
-        required: true
+    condition: {
+      type: String,
+      required: true
     },
     price: {
-        type: string,
-        required: true
+      type: String,
+      required: true
     },
+    type:  {type: mongoose.Schema.Types.ObjectId, ref: 'ProductType'},
     stripeId: {
-        type: string,
-        required: true
+      type: String,
+      required: true
     },
     wizdudsId: {
-        type: string,
+        type: String,
         required: true
+    },    
+    enabled: {
+      type: Boolean,
+      required: true
     },
   });
 

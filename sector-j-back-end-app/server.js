@@ -23,11 +23,14 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 // define a simple route
 app.get('/', (req, res) => {
-    res.json({"message": "Welcome to EasyNotes application. Take notes quickly. Organize and keep track of all your notes."});
+    res.json({"message": "Welcome to Wizduds Corp api."});
 });
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json())
+
+//defines product routes 
+require('./app/routes/products.routes.js')(app);
 
 //defines notes routes 
 require('./app/routes/note.routes.js')(app);

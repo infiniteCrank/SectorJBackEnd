@@ -42,7 +42,7 @@ module.exports = (app) => {
     });
 
     // Delete a product with productId
-    app.delete('products/:noteId',jwtCheck,function (req, res){
+    app.delete('products/:productId',jwtCheck,function (req, res){
         if (!req.user.isAdmin){
             return res.sendStatus(401);
         }
@@ -50,5 +50,4 @@ module.exports = (app) => {
             products.delete(req, res);
         }
     });
-    //app.delete('/notes/:noteId', notes.delete);
 }
