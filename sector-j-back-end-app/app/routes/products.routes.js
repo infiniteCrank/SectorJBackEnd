@@ -26,10 +26,24 @@ module.exports = (app) => {
 
 
     // Retrieve all products
-    app.get('/products', products.findAll);
+    app.get('/products',jwtCheck,function (req, res){
+        if (!req.user.isAdmin){
+            return res.sendStatus(401);
+        }
+        else{
+            products.findAll(req, res);
+        }
+    });
 
     // Retrieve a single product with productId
-    app.get('/products/:productId', products.findOne);
+    app.get('/products/:productId',jwtCheck,function (req, res){
+        if (!req.user.isAdmin){
+            return res.sendStatus(401);
+        }
+        else{
+            products.findOne(req, res);
+        }
+    });
 
     // Update a product with productId
     app.put('/products/:productId',jwtCheck,function (req, res){
