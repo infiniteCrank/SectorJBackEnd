@@ -29,7 +29,9 @@ exports.validateProduct = (req) =>{
         let isString = value => typeof value === 'string' || value instanceof String;
     
         for (i in productFields) {
-            if(!req.body[productFields[i]]) {//check for empty fields
+            if(!req.body[productFields[i]] &&
+                (productFields[i]!= "enabled") 
+                ) {//check for empty fields
                 err += productFields[i] + " is a required field.  "
             }else if( //check strings
                 isString(req.body[productFields[i]]) &&
