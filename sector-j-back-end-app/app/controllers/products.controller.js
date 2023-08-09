@@ -179,6 +179,7 @@ exports.update = (req, res) => {
 
 // Delete a product with the specified productId in the request
 exports.delete = (req, res) => {
+    console.log("i got here to delete")
     ProductsModel.findByIdAndRemove(req.params.productId)
     .then(product => {
         if(!product) {
@@ -194,7 +195,7 @@ exports.delete = (req, res) => {
             });                
         }
         return res.status(500).send({
-            message: "Could not delete product with id " + req.params.productId
+            message: "Could not delete product with id " + req.params.productId + " do to:"+ err
         });
     });
 };

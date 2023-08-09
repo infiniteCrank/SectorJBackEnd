@@ -56,7 +56,7 @@ module.exports = (app) => {
     });
 
     // Delete a product with productId
-    app.delete('products/:productId',jwtCheck,function (req, res){
+    app.delete('/delete/products/:productId',jwtCheck,function (req, res){
         if (!req.user.isAdmin){
             return res.sendStatus(401);
         }
