@@ -133,16 +133,22 @@ exports.findOne = (req, res) => {
 // Update a product identified by the productId in the request
 exports.update = (req, res) => {
     // Validate Request
-    if(!req.body.content) {
+    let err = ProductValidator.validateProduct(req) 
+
+    //return an error if validation does not pass 
+    if(err!=""){
         return res.status(400).send({
-            message: "Product content can not be empty"
+            title: 'Error updating product',
+            content: err
         });
     }
 
     // Find product and update it with the request body
     ProductsModel.findByIdAndUpdate(req.params.productId, {
         name: req.body.name,         
-        description: req.body.description,        
+        description: req.body.description,
+        type: req.body.type,
+        image: req.body.image,        
         quantity: req.body.quantity,    
         size: req.body.size,          
         color: req.body.color,         
@@ -155,7 +161,7 @@ exports.update = (req, res) => {
     .then(product => {
         if(!product) {
             return res.status(404).send({
-                message: "zproduct not found with id " + req.params.productId
+                message: "product not found with id " + req.params.productId
             });
         }
         res.send(product);
