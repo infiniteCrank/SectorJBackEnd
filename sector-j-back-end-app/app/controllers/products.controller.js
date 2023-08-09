@@ -5,9 +5,57 @@ const ProductValidator = require('../validators/product.validation.js')
 
 // Create and Save a new Product
 exports.create = (req, res) => {
+    let isObject = value => typeof value === 'object' || value instanceof Object;
+
+    let productTypePromise;
+    let productImagePromise;
+
+    const isImageObject = isObject(req.body.image);
+    const isTypeObject = isObject(req.body.type);
+
     let err = ProductValidator.validateProduct(req) 
-    err += ProductValidator.validateProductImage(req)
-    err += ProductValidator.validateProductType(req)
+
+    if(isImageObject){
+        err += ProductValidator.validateProductImage(req)
+        const newProductImage = new ProductImageModel({
+            name: req.body.image.name,
+            quantity: req.body.image.quantity,
+            imageType: req.body.image.imageType,
+        });
+    
+        productImagePromise = newProductImage.save()
+        .then(productImageData => {
+            console.log(productImageData)
+            return productImageData.id;
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Some error occurred while saving the Product image."
+            });
+        });
+    }else{
+        productTypePromise = Promise.resolve(req.body.image);
+    }
+
+    if(isTypeObject){
+        err += ProductValidator.validateProductType(req)
+        const newProductType = new ProductTypeModel({
+            name: req.body.type.name,
+            description: req.body.type.description,
+            enabled: req.body.type.enabled,
+    
+        });
+        productTypePromise = newProductType.save()
+        .then(productTypeData => {
+            console.log(productTypeData)
+            return productTypeData.id;
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Some error occurred while saving the Product type."
+            });
+        });
+    }else{
+        productTypePromise = Promise.resolve(req.body.type);
+    }
     
     //return an error if validation does not pass 
     if(err!=""){
@@ -16,39 +64,6 @@ exports.create = (req, res) => {
             content: err
         });
     }
-
-    const newProductType = new ProductTypeModel({
-        name: req.body.type.name,
-        description: req.body.type.description,
-        enabled: req.body.type.enabled,
-
-    });
-
-    const newProductImage = new ProductImageModel({
-        name: req.body.image.name,
-        quantity: req.body.image.quantity,
-        imageType: req.body.image.imageType,
-    });
-
-    const productTypePromise = newProductType.save()
-    .then(productTypeData => {
-        console.log(productTypeData)
-        return productTypeData.id;
-    }).catch(err => {
-        res.status(500).send({
-            message: err.message || "Some error occurred while saving the Product type."
-        });
-    });
-
-    const productImagePromise = newProductImage.save()
-    .then(productImageData => {
-        console.log(productImageData)
-        return productImageData.id;
-    }).catch(err => {
-        res.status(500).send({
-            message: err.message || "Some error occurred while saving the Product image."
-        });
-    });
 
     Promise.all([productTypePromise, productImagePromise]).then((values) => {
         console.log(values);

@@ -126,7 +126,20 @@ exports.validateProduct = (req) =>{
                         }
                     }
                 }
-    
+                if(
+                    productFields[i]== "image" &&
+                    stringRegEx.test(req.body[productFields[i]])
+                ){
+                    console.log(req.body[productFields[i]].match(stringRegEx))
+                    err += productFields[i] + " must be an product image object. name,quantity,imageType. or a product image ID.  "
+                }
+                if(
+                    productFields[i]== "type" &&
+                    stringRegEx.test(req.body[productFields[i]])
+                ){
+                    console.log(req.body[productFields[i]].match(stringRegEx))
+                    err += productFields[i] + " must be an product type object. name,description,enabled. or a product type ID.  "
+                }
     
             }else{
                 //this is all non-strings
@@ -160,15 +173,17 @@ exports.validateProduct = (req) =>{
                 let isObject = value => typeof value === 'object' || value instanceof Object;
                 if(
                     productFields[i]== "image" &&
-                    !isObject(req.body[productFields[i]])
+                    !isObject(req.body[productFields[i]]) &&
+                    !isString(req.body[productFields[i]])
                 ){
-                    err += productFields[i] + " must be an product image object. name,quantity,imageType.  "
+                    err += productFields[i] + " must be an product image object. name,quantity,imageType. or a product image ID.  "
                 }
                 if(
                     productFields[i]== "type" &&
-                    !isObject(req.body[productFields[i]])
+                    !isObject(req.body[productFields[i]]) &&
+                    !isString(req.body[productFields[i]])
                 ){
-                    err += productFields[i] + " must be an product type object. name,description,enabled.  "
+                    err += productFields[i] + " must be an product type object. name,description,enabled. or a product type ID.  "
                 }
                 
             }
