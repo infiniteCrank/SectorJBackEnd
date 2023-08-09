@@ -33,7 +33,7 @@ exports.create = (req, res) => {
             });
         });
     }else{
-        productTypePromise = Promise.resolve(req.body.image);
+        productImagePromise = Promise.resolve(req.body.image);
     }
 
     if(isTypeObject){
