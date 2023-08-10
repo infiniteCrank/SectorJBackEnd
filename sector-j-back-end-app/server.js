@@ -29,6 +29,12 @@ app.get('/', (req, res) => {
 // parse requests of content-type - application/json
 app.use(bodyParser.json())
 
+//defines product image routes 
+require('./app/routes/product.image.routes.js')(app);
+
+//defines product type routes 
+require('./app/routes/product.type.routes.js')(app);
+
 //defines product routes 
 require('./app/routes/products.routes.js')(app);
 

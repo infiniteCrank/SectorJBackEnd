@@ -22,7 +22,7 @@ exports.create = (req, res) => {
     newProductType.save()
     .then(productTypeData => {
         console.log(productTypeData)
-        return productTypeData.id;
+        res.send(productTypeData);
     }).catch(err => {
         res.status(500).send({
             message: err.message || "Some error occurred while saving the Product type."
