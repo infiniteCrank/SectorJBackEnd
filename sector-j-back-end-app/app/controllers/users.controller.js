@@ -11,6 +11,10 @@ const PropertiesReader = require('properties-reader');
 const adminKeyProperties = PropertiesReader('./app/validation/adminKey.properties');
 const adminKey = adminKeyProperties.get("adminKey")
 exports.register = (req, res) => {
+    // There can ony be one 
+    if(adminKey){
+        return res.status(400).json({ highlander: "there can only be one!" });
+    }
     // Form validation
     const { errors, isValid } = validateRegisterInput(req.body);
     // Check validation
