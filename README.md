@@ -19,10 +19,10 @@ this is the API for wizduds corp it will have endpoints for product database, in
 8. create an adminKey.properties file in validation folder with the following
    ``` adminKey= ```
 
-9.  add a user in mongo 
-   ``` db.products.insert( { name: "some username", email: "someemail@gmail.com", password: "somepassword" } ) ```
+9.  add a user by hitting the /register endpoint
+    ```curl --location --request POST 'http://localhost:3000/register' \ --header 'Content-Type: application/json' \ --data-raw '{ "name": "someuser", "email": "someemail@gmail.com", "password": "somepassword", "password2": "somepassword"}'```
 
 10. gather the id created in mongo db for that user
-    ```{acknowledged: true, insertedIds: { '0': ObjectId("somekey12345") }} ```
+    ```"_id": "someid","name": "someuser", "email": "someemail@gmail.com","password": "somepassword","date": "2023-08-04T19:18:04.237Z", "__v": 0 ```
 
 11.  place in adminKey.properties: ``` adminKey=somekey12345 ```

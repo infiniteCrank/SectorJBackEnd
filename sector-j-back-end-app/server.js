@@ -23,11 +23,20 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 // define a simple route
 app.get('/', (req, res) => {
-    res.json({"message": "Welcome to EasyNotes application. Take notes quickly. Organize and keep track of all your notes."});
+    res.json({"message": "Welcome to Wizduds Corp api."});
 });
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json())
+
+//defines product image routes 
+require('./app/routes/product.image.routes.js')(app);
+
+//defines product type routes 
+require('./app/routes/product.type.routes.js')(app);
+
+//defines product routes 
+require('./app/routes/products.routes.js')(app);
 
 //defines notes routes 
 require('./app/routes/note.routes.js')(app);
@@ -41,10 +50,12 @@ app.listen(3000, () => {
 });
 
 mongoose.Promise = global.Promise;
+
 // Connecting to the database
 mongoose.connect(dbConfig.url, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useFindAndModify: false
 }).then(() => {
     console.log("Successfully connected to the database");    
 }).catch(err => {
