@@ -16,7 +16,7 @@ module.exports = (app) => {
     //app.use(jwtCheck);
     // Create a new Note
     app.post('/notes',jwtCheck,function (req, res){
-        if (!req.user.isAdmin){
+        if (!req.auth.isAdmin){
             return res.sendStatus(401);
         }
         else{
@@ -33,7 +33,7 @@ module.exports = (app) => {
 
     // Update a Note with noteId
     app.put('/notes/:noteId',jwtCheck,function (req, res){
-        if (!req.user.isAdmin){
+        if (!req.auth.isAdmin){
             return res.sendStatus(401);
         }
         else{
@@ -44,7 +44,7 @@ module.exports = (app) => {
 
     // Delete a Note with noteId
     app.delete('/notes/:noteId',jwtCheck,function (req, res){
-        if (!req.user.isAdmin){
+        if (!req.auth.isAdmin){
             return res.sendStatus(401);
         }
         else{

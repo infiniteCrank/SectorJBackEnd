@@ -15,7 +15,7 @@ module.exports = (app) => {
 
     // create stripe session
     app.post('/stripe/checkout',jwtCheck,function (req, res){
-        if (!req.user.isAdmin){
+        if (!req.auth.isAdmin){
             return res.sendStatus(401);
         }
         else{
@@ -25,7 +25,7 @@ module.exports = (app) => {
 
     // Create a new product
     app.post('/stripe/product',jwtCheck,function (req, res){
-        if (!req.user.isAdmin){
+        if (!req.auth.isAdmin){
             return res.sendStatus(401);
         }
         else{
@@ -36,7 +36,7 @@ module.exports = (app) => {
 
     // Retrieve all products
     app.get('/stripe/products',jwtCheck,function (req, res){
-        if (!req.user.isAdmin){
+        if (!req.auth.isAdmin){
             return res.sendStatus(401);
         }
         else{
@@ -46,7 +46,7 @@ module.exports = (app) => {
 
     // Delete a product with productId
     app.delete('stripe/delete/products/:productId',jwtCheck,function (req, res){
-        if (!req.user.isAdmin){
+        if (!req.auth.isAdmin){
             return res.sendStatus(401);
         }
         else{
