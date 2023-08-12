@@ -5,7 +5,7 @@ module.exports = (app) => {
     const jwtKeyPath = path.resolve("./app/validation/jwtRS256.key.pub");
     const pubKey = fs.readFileSync(jwtKeyPath);
     //json web token stuff
-    const jwt = require('express-jwt');
+    const { expressjwt: jwt } = require("express-jwt");
     const jwtCheck = jwt({
         secret: pubKey,
         audience: "sector-j:Admin",
