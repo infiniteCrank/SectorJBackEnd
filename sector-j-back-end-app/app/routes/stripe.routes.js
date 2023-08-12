@@ -14,14 +14,7 @@ module.exports = (app) => {
     });
 
     // create stripe session
-    app.post('/stripe/checkout',jwtCheck,function (req, res){
-        if (!req.auth.isAdmin){
-            return res.sendStatus(401);
-        }
-        else{
-            stripeService.checkOutSession(req, res);
-        }
-    });
+    app.post('/stripe/checkout',(req, res)=>{stripeService.checkOutSession(req, res)});
 
     // Create a new product
     app.post('/stripe/product',jwtCheck,function (req, res){

@@ -8,7 +8,7 @@ const stripeApiHost = (stripeEnv == "dev")?stripeConfig.stripeDevHost:stripeConf
 
 exports.checkOutSession = (req, res) => {
     const cart = req.body;
-    const session = stripe.checkout.sessions.create({
+    stripe.checkout.sessions.create({
         line_items: [
             {
                 quantity: 1,
@@ -26,9 +26,11 @@ exports.checkOutSession = (req, res) => {
         mode: 'payment',
         success_url: stripeApiHost + '/success.html',
         cancel_url: stripeApiHost + '/cancel.html',
+    }).then((session)=>{
+        console.log(session);
+        res.redirect(303, session.url);
     });
 
-    res.redirect(303, session.url);
 
 }
 
