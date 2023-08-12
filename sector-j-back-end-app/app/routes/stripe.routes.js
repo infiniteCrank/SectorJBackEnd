@@ -13,7 +13,16 @@ module.exports = (app) => {
         algorithms: ['RS256']
     });
 
-    //app.use(jwtCheck);
+
+    app.post('/stripe/checkout',jwtCheck,function (req, res){
+        if (!req.user.isAdmin){
+            return res.sendStatus(401);
+        }
+        else{
+            stripeService.checkOutSession(req, res);
+        }
+    });
+
     // Create a new product
     app.post('/stripe/product',jwtCheck,function (req, res){
         if (!req.user.isAdmin){

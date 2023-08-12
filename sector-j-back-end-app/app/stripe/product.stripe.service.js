@@ -2,8 +2,32 @@ const stripeKeyProperties = PropertiesReader('../validation/stripeKeys.propertie
 const stripeEnv = stripeKeyProperties.get("stripeEnv")
 const stripeApiKey = (stripeEnv == "dev")?stripeKeyProperties.get("testKey"):stripeKeyProperties.get("prodKey");
 const stripe = require('stripe')(stripeApiKey);
+const stripeApiHost = (stripeEnv == "dev")?stripeKeyProperties.get("stripeDevHost"):stripeKeyProperties.get("stripeProdHost");
 
-// Create and Save a new Note
+exports.checkOutSession = (req, res) => {
+    const cart = req.body;
+    const session = stripe.checkout.sessions.create({
+        line_items: [
+            {
+                quantity: 1,
+                price_data: {
+                    currency: 'usd',
+                    unit_amount: 2000,
+                    product_data: {
+                        name: 'T-shirt',
+                    },
+                },
+            },
+        ],
+        mode: 'payment',
+        success_url: stripeApiHost + '/success.html',
+        cancel_url: stripeApiHost + '/cancel.html',
+    });
+
+    res.redirect(303, session.url);
+
+}
+
 exports.createStripeProduct = (req, res) => {
     const product = req.body;
     stripe.products.create({
