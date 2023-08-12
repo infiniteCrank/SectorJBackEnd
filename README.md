@@ -4,7 +4,8 @@ this is the API for wizduds corp it will have endpoints for product database, in
 1. navigate to ``` cd sector-j-back-end-app ```
 2. run ``` npm install ```
 3. generate keys:
-    ssh-keygen -t rsa -P "" -b 4096 -m PEM -f jwtRS256.key
+    ``` openssl genrsa -out jwtRS256.key 4096``` 
+    ```openssl rsa -in jwtRS256.key -pubout > jwtRS256.key.pub```
 4. place keys in validation folder 
 5. create a db in mongo DB: 
    1. run ``` use somedb ```
