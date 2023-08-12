@@ -15,6 +15,8 @@ exports.checkOutSession = (req, res) => {
                     unit_amount: 2000,
                     product_data: {
                         name: 'T-shirt',
+                        description: 'T-shirt',
+                        tax_code:'txcd_99999999',
                     },
                 },
             },
@@ -33,13 +35,13 @@ exports.createStripeProduct = (req, res) => {
     stripe.products.create({
         name: product.name,
         description: product.description,
+        tax_code:'txcd_99999999',
         active:product.active,
         default_price_data:{
             unit_amount: product.amount,//A positive integer in cents
             currency: 'usd'
         },
         statement_descriptor: 'clothing',
-        tax_code:'txcd_99999999'
     }).then(data => {
         res.send(data);
     }).catch(err => {
