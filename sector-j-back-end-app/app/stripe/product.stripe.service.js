@@ -1,5 +1,5 @@
 const PropertiesReader = require('properties-reader');
-const stripeKeyProperties = PropertiesReader('./app/validation/stripeKeys.properties');
+const stripeKeyProperties = PropertiesReader('./app/validation/stripeKey.properties');
 const stripeConfig = require('../../config/stripe.config');
 const stripeEnv = stripeConfig.stripeEnv;
 const stripeApiKey = (stripeEnv == "dev")?stripeKeyProperties.get("testKey"):stripeKeyProperties.get("prodKey");
