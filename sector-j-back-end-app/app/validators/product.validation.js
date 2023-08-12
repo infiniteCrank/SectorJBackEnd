@@ -14,7 +14,6 @@ exports.validateProduct = (req) =>{
         'condition',    //val
         'price',        //val
         'type',         //val
-        'stripeId',     //val
         'wizdudsId',    //val
         'enabled'       //val
         ];
@@ -98,19 +97,6 @@ exports.validateProduct = (req) =>{
                     (!dollarRegEx.test(req.body[productFields[i]]))
                 ){
                     err += productFields[i] + " must be a valid dollar amount.  ";
-                }
-    
-                //check stripe id length 
-                if( productFields[i]== "stripeId"){
-                    const stripeIdNumber = req.body[productFields[i]];
-                    if(stripeIdNumber){
-                        if(!(stripeIdNumber.length<255)){
-                            err += "Stripe Id must be under 255 characters.  ";
-                        }
-                        if(!(stripeIdNumber.length>20)){
-                            err += "Stripe Id must be greater than 20 characters.  ";
-                        }
-                    }
                 }
     
                 //check wizduds id 

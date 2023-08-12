@@ -29,6 +29,9 @@ app.get('/', (req, res) => {
 // parse requests of content-type - application/json
 app.use(bodyParser.json())
 
+//defines  stripe product routes 
+require('./app/routes/stripe.routes.js')(app);
+
 //defines product image routes 
 require('./app/routes/product.image.routes.js')(app);
 

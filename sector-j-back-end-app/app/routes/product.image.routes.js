@@ -5,7 +5,7 @@ module.exports = (app) => {
     const jwtKeyPath = path.resolve("./app/validation/jwtRS256.key.pub");
     const pubKey = fs.readFileSync(jwtKeyPath);
     //json web token stuff
-    const jwt = require('express-jwt');
+    const { expressjwt: jwt } = require("express-jwt");
     const jwtCheck = jwt({
         secret: pubKey,
         audience: "sector-j:Admin",
@@ -15,7 +15,7 @@ module.exports = (app) => {
 
     // Create a new product image
     app.post('/product/image',jwtCheck,function (req, res){
-        if (!req.user.isAdmin){
+        if (!req.auth.isAdmin){
             return res.sendStatus(401);
         }
         else{
@@ -26,7 +26,7 @@ module.exports = (app) => {
 
     // Retrieve all product images
     app.get('/product/images',jwtCheck,function (req, res){
-        if (!req.user.isAdmin){
+        if (!req.auth.isAdmin){
             return res.sendStatus(401);
         }
         else{
@@ -36,7 +36,7 @@ module.exports = (app) => {
 
     // Retrieve a single product image with productImageId
     app.get('/product/images/:productImageId',jwtCheck,function (req, res){
-        if (!req.user.isAdmin){
+        if (!req.auth.isAdmin){
             return res.sendStatus(401);
         }
         else{
@@ -46,7 +46,7 @@ module.exports = (app) => {
 
     // Update a product image with productImageId
     app.put('/product/images/:productImageId',jwtCheck,function (req, res){
-        if (!req.user.isAdmin){
+        if (!req.auth.isAdmin){
             return res.sendStatus(401);
         }
         else{
@@ -56,7 +56,7 @@ module.exports = (app) => {
 
     // Delete a product image with productImageId
     app.delete('/delete/product/images/:productImageId',jwtCheck,function (req, res){
-        if (!req.user.isAdmin){
+        if (!req.auth.isAdmin){
             return res.sendStatus(401);
         }
         else{

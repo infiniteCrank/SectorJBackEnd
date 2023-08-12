@@ -5,7 +5,7 @@ module.exports = (app) => {
     const jwtKeyPath = path.resolve("./app/validation/jwtRS256.key.pub");
     const pubKey = fs.readFileSync(jwtKeyPath);
     //json web token stuff
-    const jwt = require('express-jwt');
+    const { expressjwt: jwt } = require("express-jwt");
     const jwtCheck = jwt({
         secret: pubKey,
         audience: "sector-j:Admin",
@@ -15,7 +15,7 @@ module.exports = (app) => {
 
     // Create a new product type
     app.post('/product/type',jwtCheck,function (req, res){
-        if (!req.user.isAdmin){
+        if (!req.auth.isAdmin){
             return res.sendStatus(401);
         }
         else{
@@ -26,7 +26,7 @@ module.exports = (app) => {
 
     // Retrieve all product types
     app.get('/product/types',jwtCheck,function (req, res){
-        if (!req.user.isAdmin){
+        if (!req.auth.isAdmin){
             return res.sendStatus(401);
         }
         else{
@@ -36,7 +36,7 @@ module.exports = (app) => {
 
     // Retrieve a single product type with productTypeId
     app.get('/product/types/:productTypeId',jwtCheck,function (req, res){
-        if (!req.user.isAdmin){
+        if (!req.auth.isAdmin){
             return res.sendStatus(401);
         }
         else{
@@ -46,7 +46,7 @@ module.exports = (app) => {
 
     // Update a product type with productTypeId
     app.put('/product/types/:productTypeId',jwtCheck,function (req, res){
-        if (!req.user.isAdmin){
+        if (!req.auth.isAdmin){
             return res.sendStatus(401);
         }
         else{
@@ -56,7 +56,7 @@ module.exports = (app) => {
 
     // Delete a product type with productTypeId
     app.delete('/delete/product/types/:productTypeId',jwtCheck,function (req, res){
-        if (!req.user.isAdmin){
+        if (!req.auth.isAdmin){
             return res.sendStatus(401);
         }
         else{

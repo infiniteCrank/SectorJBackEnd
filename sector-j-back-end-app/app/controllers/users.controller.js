@@ -82,6 +82,14 @@ exports.login = (req, res) => {
                         expiresIn: 10800 // 3 hours in seconds
                     },
                     (err, token) => {
+                        if(err){
+                            console.log("there was an error:")
+                            console.log(err)
+                            return res
+                            .status(400)
+                            .json({ error: err.message });
+                        }
+
                         res.json({
                             success: true,
                             token: "Bearer " + token
