@@ -13,7 +13,7 @@ module.exports = (app) => {
         algorithms: ['RS256']
     });
 
-
+    // create stripe session
     app.post('/stripe/checkout',jwtCheck,function (req, res){
         if (!req.user.isAdmin){
             return res.sendStatus(401);
