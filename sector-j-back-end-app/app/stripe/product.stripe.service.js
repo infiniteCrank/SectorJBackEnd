@@ -1,9 +1,10 @@
 const PropertiesReader = require('properties-reader');
 const stripeKeyProperties = PropertiesReader('./app/validation/stripeKeys.properties');
-const stripeEnv = stripeKeyProperties.get("stripeEnv")
+const stripeConfig = require('../../config/stripe.config');
+const stripeEnv = stripeConfig.stripeEnv;
 const stripeApiKey = (stripeEnv == "dev")?stripeKeyProperties.get("testKey"):stripeKeyProperties.get("prodKey");
 const stripe = require('stripe')(stripeApiKey);
-const stripeApiHost = (stripeEnv == "dev")?stripeKeyProperties.get("stripeDevHost"):stripeKeyProperties.get("stripeProdHost");
+const stripeApiHost = (stripeEnv == "dev")?stripeConfig.stripeDevHost:stripeConfig.stripeProdHost;
 
 exports.checkOutSession = (req, res) => {
     const cart = req.body;
