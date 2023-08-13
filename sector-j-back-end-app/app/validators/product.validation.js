@@ -1,4 +1,4 @@
-const stringRegEx = /[^-\s\w-_.]/
+const stringRegEx = /[^-\s\w-_.,#]/
 const hexColorRegEx = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/
 const dollarRegEx = /^\$?[0-9]+(\.[0-9][0-9])?$/;
 
@@ -63,24 +63,25 @@ exports.validateProduct = (req) =>{
                         err += "Product description must be greater than 5 characters.  ";
                     }
                     if(stringRegEx.test(productdescription)){
-                        err += "Product description must be letters numbers or underscore.  ";
+                        err += "Product description must be letters numbers or punctuation.  ";
                     }
                 }
             
                 //check to make sure size is on size chart
                 if(
                     productFields[i]== "size" &&
-                    (!sizes.includes(req.body[productFields[i]]))
+                    (stringRegEx.test(req.body[productFields[i]]))
                 ){
-                    err += productFields[i] + " must be a valid size. valid sizes are " + sizes.join() + ".  ";
+                    err += productFields[i] + "Product size must be letters numbers or punctuation.  ";
                 }
     
                 //check to make sure color is a hex color 
                 if(
                     productFields[i]== "color" &&
-                    (!hexColorRegEx.test(req.body[productFields[i]]))
+                    (stringRegEx.test(req.body[productFields[i]]))
                 ){
-                    err += productFields[i] + " must be a valid hex color.  ";
+                    console.log(req.body[productFields[i]].match(stringRegEx))
+                    err += productFields[i] + "Product color must be letters numbers or punctuation.  ";
                 }
     
                 //check to make sure condition is in the list 
