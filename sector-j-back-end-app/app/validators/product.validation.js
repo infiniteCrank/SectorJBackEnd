@@ -133,7 +133,8 @@ exports.validateProduct = (req) =>{
             }else{
                 //this is all non-strings
     
-                if( 
+                if( (productFields[i]!= "image") &&
+                    (productFields[i]!= "quantity") &&
                     (productFields[i]!= "type") &&
                     (productFields[i]!= "enabled") 
                 ){
