@@ -8,33 +8,10 @@ exports.create = (req, res) => {
     let isObject = value => typeof value === 'object' || value instanceof Object;
 
     let productTypePromise;
-    let productImagePromise;
 
-    const isImageObject = isObject(req.body.image);
     const isTypeObject = isObject(req.body.type);
 
     let err = ProductValidator.validateProduct(req) 
-
-    if(isImageObject){
-        err += ProductValidator.validateProductImage(req)
-        const newProductImage = new ProductImageModel({
-            name: req.body.image.name,
-            quantity: req.body.image.quantity,
-            imageType: req.body.image.imageType,
-        });
-    
-        productImagePromise = newProductImage.save()
-        .then(productImageData => {
-            console.log(productImageData)
-            return productImageData.id;
-        }).catch(err => {
-            res.status(500).send({
-                message: err.message || "Some error occurred while saving the Product image."
-            });
-        });
-    }else{
-        productImagePromise = Promise.resolve(req.body.image);
-    }
 
     if(isTypeObject){
         err += ProductValidator.validateProductType(req)
@@ -65,14 +42,14 @@ exports.create = (req, res) => {
         });
     }
 
-    Promise.all([productTypePromise, productImagePromise]).then((values) => {
-        console.log(values);
+    productTypePromise.then((productType) => {
+        console.log(productType);
         // Create a Product
         const product = new ProductsModel({
             name: req.body.name,         
             description: req.body.description,
-            type: values[0],
-            image: values[1],         
+            type: productType,
+            image: req.body.image,         
             quantity: req.body.quantity,    
             size: req.body.size,          
             color: req.body.color,         

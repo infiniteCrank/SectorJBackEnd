@@ -120,7 +120,7 @@ exports.validateProduct = (req) =>{
                     stringRegEx.test(req.body[productFields[i]])
                 ){
                     console.log(req.body[productFields[i]].match(stringRegEx))
-                    err += productFields[i] + " must be an product image object. name,quantity,imageType. or a product image ID.  "
+                    err += productFields[i] + " is the image name without the file type.  "
                 }
                 if(
                     productFields[i]== "type" &&
@@ -133,20 +133,12 @@ exports.validateProduct = (req) =>{
             }else{
                 //this is all non-strings
     
-                if( 
-                    (productFields[i]!= "image") &&
+                if( (productFields[i]!= "image") &&
                     (productFields[i]!= "quantity") &&
                     (productFields[i]!= "type") &&
                     (productFields[i]!= "enabled") 
                 ){
                     err += productFields[i] + " must be a string.  "
-                }
-                //check numbers 
-                if(
-                    productFields[i]== "quantity" && 
-                    isNaN(req.body[productFields[i]])
-                ){
-                    err += productFields[i] + " must be a number.  "
                 }
     
                 //check boolean 
@@ -160,13 +152,6 @@ exports.validateProduct = (req) =>{
     
                 //check objects
                 let isObject = value => typeof value === 'object' || value instanceof Object;
-                if(
-                    productFields[i]== "image" &&
-                    !isObject(req.body[productFields[i]]) &&
-                    !isString(req.body[productFields[i]])
-                ){
-                    err += productFields[i] + " must be an product image object. name,quantity,imageType. or a product image ID.  "
-                }
                 if(
                     productFields[i]== "type" &&
                     !isObject(req.body[productFields[i]]) &&
