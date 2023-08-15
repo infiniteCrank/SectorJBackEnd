@@ -11,9 +11,12 @@ const ProductsSchema = mongoose.Schema({
       type: String,
       required: true
     },
-    image:  {type: mongoose.Schema.Types.ObjectId, ref: 'ProductImage'},
+    image: {
+      type: String,
+      required: true
+    },
     quantity: {
-      type: Number,
+      type: String,
       required: true
     },
     size:{
