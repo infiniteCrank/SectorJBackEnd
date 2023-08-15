@@ -16,7 +16,7 @@ const ProductsSchema = mongoose.Schema({
       required: true
     },
     quantity: {
-      type: String,
+      type: mongoose.Schema.Types.Mixed,
       required: true
     },
     size:{
