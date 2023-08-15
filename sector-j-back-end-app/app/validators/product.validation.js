@@ -123,13 +123,6 @@ exports.validateProduct = (req) =>{
                     err += productFields[i] + " is the image name without the file type.  "
                 }
                 if(
-                    productFields[i]== "quantity" &&
-                    stringRegEx.test(req.body[productFields[i]])
-                ){
-                    console.log(req.body[productFields[i]].match(stringRegEx))
-                    err += productFields[i] + " is a json of all sizes and quantities of those sizes.  "
-                }
-                if(
                     productFields[i]== "type" &&
                     stringRegEx.test(req.body[productFields[i]])
                 ){
