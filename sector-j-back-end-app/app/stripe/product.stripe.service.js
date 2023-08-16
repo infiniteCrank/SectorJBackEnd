@@ -7,22 +7,10 @@ const stripe = require('stripe')(stripeApiKey);
 const stripeApiHost = (stripeEnv == "dev")?stripeConfig.stripeDevHost:stripeConfig.stripeProdHost;
 
 exports.checkOutSession = (req, res) => {
-    const cart = req.body;
+    const cart = req.body.lineItems;
+    console.log(cart)
     stripe.checkout.sessions.create({
-        line_items: [
-            {
-                quantity: 1,
-                price_data: {
-                    currency: 'usd',
-                    unit_amount: 2000,
-                    product_data: {
-                        name: 'T-shirt',
-                        description: 'T-shirt',
-                        tax_code:'txcd_99999999',
-                    },
-                },
-            },
-        ],
+        line_items: cart,
         mode: 'payment',
         success_url: stripeApiHost + '/success.html',
         cancel_url: stripeApiHost + '/cancel.html',
