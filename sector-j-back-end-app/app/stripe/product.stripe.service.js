@@ -12,11 +12,14 @@ exports.checkOutSession = (req, res) => {
     stripe.checkout.sessions.create({
         line_items: cart,
         mode: 'payment',
-        success_url: stripeApiHost + '/success.html',
-        cancel_url: stripeApiHost + '/cancel.html',
+        success_url: stripeApiHost + '/success',
+        cancel_url: stripeApiHost + '/cancel',
+        shipping_address_collection: {
+            allowed_countries:["US","CA"]
+        }
     }).then((session)=>{
-        console.log(session);
-        res.redirect(303, session.url);
+        console.log(session)
+        res.send(session);
     });
 
 
