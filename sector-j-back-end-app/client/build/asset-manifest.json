@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.1137d9a7.css",
+    "main.js": "/static/js/main.a8c6ce07.js",
+    "static/js/869.4a1c9d2d.chunk.js": "/static/js/869.4a1c9d2d.chunk.js",
+    "static/js/722.20cf1d96.chunk.js": "/static/js/722.20cf1d96.chunk.js",
+    "static/media/halloween-season-1-franken-lady.jpeg": "/static/media/halloween-season-1-franken-lady.38de497588c71913eab9.jpeg",
+    "static/media/no-image.jpeg": "/static/media/no-image.46712df85960b8639fa3.jpeg",
+    "index.html": "/index.html",
+    "main.1137d9a7.css.map": "/static/css/main.1137d9a7.css.map",
+    "main.a8c6ce07.js.map": "/static/js/main.a8c6ce07.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1137d9a7.css",
+    "static/js/main.a8c6ce07.js"
+  ]
+}
