@@ -8,8 +8,6 @@ const stripeApiHost = (stripeEnv == "dev")?stripeConfig.stripeDevHost:stripeConf
 
 exports.checkOutSession = (req, res) => {
     const cart = req.body.lineItems;
-    console.log("using key")
-    console.log(stripeApiKey.substring(10))
     stripe.checkout.sessions.create({
         line_items: cart,
         mode: 'payment',
