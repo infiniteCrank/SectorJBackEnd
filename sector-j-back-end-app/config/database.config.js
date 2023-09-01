@@ -1,3 +1,3 @@
 module.exports = {
-	url: 'mongodb://wizdudsadmin:LunchBoxx912416!$!@127.0.0.1:27017/sectorJ',
+	url: 'mongodb://julianduranmt:Bmwilk0422!@localhost:27017/sectorJ',
 }
