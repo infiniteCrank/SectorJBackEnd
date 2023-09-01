@@ -114,3 +114,4 @@ sector-j-back-end-app/app/validation/jwtRS256.key.pub
 sector-j-back-end-app/app/validation/adminKey.properties
 sector-j-back-end-app/app/validation/stripeKey.properties
 sector-j-back-end-app/config/database.config.prod.js
+sector-j-back-end-app/config/database.config.dev.js
